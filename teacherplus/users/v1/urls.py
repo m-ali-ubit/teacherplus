@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 from teacherplus.users.v1.views import (
-    UserModelViewSet,
+    UserViewSet,
     LoginUserAPIView,
     ForgotPasswordAPIView,
     UpdateUserPasswordAPIView,
@@ -9,7 +9,7 @@ from teacherplus.users.v1.views import (
 )
 
 router = DefaultRouter()
-router.register(r"users", UserModelViewSet, basename="v1-users")
+router.register(r"", UserViewSet, basename="v1-users")
 
 urlpatterns = [
     path("login/", LoginUserAPIView.as_view(), name="login"),

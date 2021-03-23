@@ -24,6 +24,7 @@ class Activity(CreateUpdateMixin):
 
     class Meta:
         ordering = ["created_at"]
+        verbose_name_plural = "Activities"
 
 
 class Post(CreateUpdateMixin):

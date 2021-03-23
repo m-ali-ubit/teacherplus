@@ -1,10 +1,10 @@
 from enum import Enum
 
 
-class UserType(Enum):
+class UserTypeEnum(Enum):
     STUDENT = "STUDENT"
     PARENT = "PARENT"
-    TUTOR = "TUTOR"
+    TEACHER = "TEACHER"
     INSTITUTE = "INSTITUTE"
 
     @classmethod
@@ -13,5 +13,35 @@ class UserType(Enum):
             cls.STUDENT.value,
             cls.PARENT.value,
             cls.INSTITUTE.value,
-            cls.TUTOR.value,
+            cls.TEACHER.value,
         ]
+
+
+class GenderEnum(Enum):
+    MALE = "MALE"
+    FEMALE = "FEMALE"
+
+
+class ShiftsEnum(Enum):
+    MORNING = "MORNING"
+    EVENING = "EVENING"
+
+
+class JobTypeEnum(Enum):
+    PART_TIME = "PART_TIME"
+    FULL_TIME = "FULL_TIME"
+
+
+class AvailabilityEnum(Enum):
+    PRIVATE = "PRIVATE"
+    GROUP = "GROUP"
+    ONLINE = "ONLINE"
+    CENTRE = "CENTRE"
+
+
+class EmploymentTypeEnum(Enum):
+    PART_TIME = "PART_TIME"
+    FULL_TIME = "FULL_TIME"
+    SELF_EMPLOYED = "SELF_EMPLOYED"
+    FREELANCE = "FREELANCE"
+    INTERNSHIP = "INTERNSHIP"

@@ -184,6 +184,8 @@ typings/
 .idea/**/gradle.xml
 .idea/**/libraries
 
+.idea/misc.xml
+
 # CMake
 cmake-build-debug/
 

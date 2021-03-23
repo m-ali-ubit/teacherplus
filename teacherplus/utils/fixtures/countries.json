@@ -1,0 +1,9 @@
+[
+  {
+    "model": "utils.country",
+    "pk": 1,
+    "fields": {
+      "country": "PK"
+    }
+  }
+]

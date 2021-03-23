@@ -15,13 +15,20 @@ from rest_framework.viewsets import ViewSet
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from teacherplus.users.email import UserEmail
-from teacherplus.users.enums import UserType
+from teacherplus.users.enums import UserTypeEnum
 from teacherplus.users.helpers import UpdatePasswordHelper
-from teacherplus.users.v1.serializers import (
+from teacherplus.users.v1.serializers.model_serializer import (
     UserSerializer,
+    TeacherSerializer,
+)
+from teacherplus.users.v1.serializers.request_serializer import (
     ForgotPasswordEmailSerializer,
+    LoginRequestSerializer,
     UpdatePasswordRequestSerializer,
-    LoginRequestSerializer, StudentSerializer,
+    StudentRequestSerializer,
+    ParentRequestSerializer,
+    InstituteRequestSerializer,
+    TeacherRequestSerializer,
 )
 from teacherplus.utils.permissions import UpdatePasswordPermission
 from teacherplus.utils.response_handler import validation_exception_handler
@@ -30,26 +37,51 @@ logger = logging.getLogger(__name__)
 
 User = get_user_model()
 
-user_type_serializer_mapper = {
-    UserType.STUDENT.value: StudentSerializer,
-    # UserType.PARENT.value: ParentSerializer,
-    # UserType.INSTITUTE.value: InstituteSerializer,
-    # UserType.TUTOR.value: TutotSerializer,
+user_type_request_serializer_mapper = {
+    UserTypeEnum.STUDENT.value: StudentRequestSerializer,
+    UserTypeEnum.PARENT.value: ParentRequestSerializer,
+    UserTypeEnum.INSTITUTE.value: InstituteRequestSerializer,
+    UserTypeEnum.TEACHER.value: TeacherRequestSerializer,
 }
 
 
 class UserViewSet(ViewSet):
+    @staticmethod
+    def get_request_serializer(user_type):
+        if not user_type:
+            raise Exception("No user type found in the request.")
+        if user_type not in UserTypeEnum.get_user_types():
+            raise Exception("Invalid user type.")
+        return user_type_request_serializer_mapper[user_type]
 
     @action(methods=["POST"], detail=False)
-    # def tuto
-
-    def get_serializer_class(self):
-        user_type = self.request.data.get("type")
-        assert user_type is not None and user_type in UserType.get_user_types(), (
-            f"Either 'type' key is missing in request or has invalid user type. "
-            f"Available user types are {UserType.get_user_types()}"
-        )
-        return user_type_serializer_mapper[user_type]
+    def signup(self, request):
+        try:
+            request_data = request.data
+            request_serializer = self.get_request_serializer(
+                request_data.pop("user_type", "")
+            )
+            serializer = request_serializer(request_data)
+            serializer.is_valid(raise_exception=True)
+            user = serializer.save()
+            refresh_token = RefreshToken.for_user(user)
+            return Response(
+                data={
+                    "token": str(refresh_token.access_token),
+                    "refresh": str(refresh_token),
+                    "user": TeacherSerializer(user).data,
+                    "message": "Successfully Signed up.",
+                },
+                status=status.HTTP_200_OK,
+            )
+        except ValidationError as validation_error:
+            logger.error(
+                f"Validation error occurred while signing up teacher with exc: {validation_error}"
+            )
+            return Response(
+                data=f"Failed to sign up teacher with exc: {validation_error}",
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
 
 class UserRedirectView(LoginRequiredMixin, RedirectView):

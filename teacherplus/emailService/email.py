@@ -21,9 +21,14 @@ class EmailService:
 
     @staticmethod
     def render_and_dispatch_email(
-        subject, recipients, email_template_name, email_context,
+        subject,
+        recipients,
+        email_template_name,
+        email_context,
     ):
         email_body = EmailService.render_email_body(email_template_name, email_context)
         EmailService.dispatch_email(
-            subject, email_body, recipients,
+            subject,
+            email_body,
+            recipients,
         )

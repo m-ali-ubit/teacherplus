@@ -1,0 +1,210 @@
+[
+  {
+    "model": "utils.city",
+    "pk": 1,
+    "fields": {
+      "name": "Lahore",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 67,
+    "fields": {
+      "name": "Sukkur",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 68,
+    "fields": {
+      "name": "Punjab",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 69,
+    "fields": {
+      "name": "Pakistan",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 70,
+    "fields": {
+      "name": "Kaghan Valley",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 71,
+    "fields": {
+      "name": "Azad Kashmir",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 72,
+    "fields": {
+      "name": "Hunza",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 73,
+    "fields": {
+      "name": "Karachi",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 74,
+    "fields": {
+      "name": "Hyderabad",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 75,
+    "fields": {
+      "name": "Lima",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 76,
+    "fields": {
+      "name": "Khyber-PakhtunKhwa",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 77,
+    "fields": {
+      "name": "Abbottabad",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 78,
+    "fields": {
+      "name": "Nathia Gali",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 79,
+    "fields": {
+      "name": "Islamabad",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 80,
+    "fields": {
+      "name": "Multan",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 81,
+    "fields": {
+      "name": "Gilgit-Balistan",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 82,
+    "fields": {
+      "name": "Sindh",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 83,
+    "fields": {
+      "name": "Peshawar",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 84,
+    "fields": {
+      "name": "Chitral District",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 85,
+    "fields": {
+      "name": "Quetta",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 86,
+    "fields": {
+      "name": "Murree",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 87,
+    "fields": {
+      "name": "Rawalpindi",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 88,
+    "fields": {
+      "name": "Balochistan",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 89,
+    "fields": {
+      "name": "Muzaffarabad",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 90,
+    "fields": {
+      "name": "Chitral",
+      "country": 1
+    }
+  },
+  {
+    "model": "utils.city",
+    "pk": 91,
+    "fields": {
+      "name": "Swat",
+      "country": 1
+    }
+  }
+]
