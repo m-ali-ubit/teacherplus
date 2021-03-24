@@ -46,12 +46,15 @@ user_type_request_serializer_mapper = {
 
 
 class UserViewSet(ViewSet):
+    authentication_classes = ()
+    permission_classes = ()
+
     @staticmethod
     def get_request_serializer(user_type):
         if not user_type:
-            raise Exception("No user type found in the request.")
+            raise ValidationError({"user_type": "No user type found in the request."})
         if user_type not in UserTypeEnum.get_user_types():
-            raise Exception("Invalid user type.")
+            raise ValidationError({"user_type": "Invalid user type."})
         return user_type_request_serializer_mapper[user_type]
 
     @action(methods=["POST"], detail=False)
@@ -61,7 +64,7 @@ class UserViewSet(ViewSet):
             request_serializer = self.get_request_serializer(
                 request_data.pop("user_type", "")
             )
-            serializer = request_serializer(request_data)
+            serializer = request_serializer(data=request_data)
             serializer.is_valid(raise_exception=True)
             user = serializer.save()
             refresh_token = RefreshToken.for_user(user)
@@ -79,7 +82,7 @@ class UserViewSet(ViewSet):
                 f"Validation error occurred while signing up teacher with exc: {validation_error}"
             )
             return Response(
-                data=f"Failed to sign up teacher with exc: {validation_error}",
+                data={"errors": validation_error.detail},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 

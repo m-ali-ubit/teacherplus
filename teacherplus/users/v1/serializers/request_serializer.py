@@ -11,10 +11,11 @@ from teacherplus.users.models import (
     TeacherProfile,
 )
 from teacherplus.users.v1.serializers.model_serializer import (
-    CitySerializer,
     ExperienceSerializer,
-    TeachingExperienceSerializer, TeacherEducationSerializer,
+    TeachingExperienceSerializer,
+    TeacherEducationSerializer,
 )
+from teacherplus.utils.models import City
 from teacherplus.utils.validations import validate_existing_email
 
 
@@ -41,7 +42,9 @@ class TeacherRequestSerializer(serializers.Serializer):
     email = serializers.EmailField(validators=[validate_email, validate_existing_email])
     password = serializers.CharField(required=True)
     phone = serializers.CharField(required=False)
-    city = CitySerializer(required=True)
+    city = serializers.PrimaryKeyRelatedField(
+        queryset=City.objects.all(), required=True
+    )
     address = serializers.CharField(required=False)
     gender = serializers.ChoiceField(choices=Gender.choices, required=True)
     date_of_birth = serializers.DateField(required=False)
@@ -72,16 +75,17 @@ class TeacherRequestSerializer(serializers.Serializer):
         username = self.get_username(validated_data["email"])
         # Creating Teacher user object
         teacher = Teacher.objects.create(
+            name=validated_data.pop("name"),
             username=username,
             email=validated_data.pop("email"),
             phone=validated_data.pop("phone", ""),
-            city=validated_data.pop("city", None),
+            city=validated_data.pop("city"),
             address=validated_data.pop("address", ""),
             gender=validated_data.pop("gender"),
             date_of_birth=validated_data.pop("date_of_birth", None),
             profile_image=validated_data.pop("profile_image", None),
         )
-        teacher.set_password(validated_data["password"])
+        teacher.set_password(validated_data.pop("password"))
         teacher.save()
         # Creating Teacher profile object and attaching it with its user object
         TeacherProfile.objects.create(user=teacher, **validated_data)

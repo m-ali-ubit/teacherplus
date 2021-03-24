@@ -262,8 +262,7 @@ LOGGING = {
     "disable_existing_loggers": False,
     "formatters": {
         "verbose": {
-            "format": "%(levelname)s %(asctime)s %(module)s "
-            "%(process)d %(thread)d %(message)s"
+            "format": "%(levelname)s %(asctime)s %(filename)s %(funcName)s %(message)s"
         }
     },
     "handlers": {
@@ -300,7 +299,7 @@ REST_FRAMEWORK = {
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
-    "EXCEPTION_HANDLER": "teacherplus.utils.response_handler.custom_exception_handler",
+    # "EXCEPTION_HANDLER": "teacherplus.utils.response_handler.custom_exception_handler",
 }
 
 UPDATE_PASSWORD_TOKEN_TIMEOUT = 3600
