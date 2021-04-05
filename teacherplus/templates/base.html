@@ -40,7 +40,7 @@
       <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
       <!-- Your stuff: Third-party javascript libraries go here -->
-      
+
 
       <!-- place project specific Javascript in this file -->
       
@@ -69,10 +69,10 @@
               <a class="nav-link" href="{% url 'about' %}">About</a>
             </li>
             {% if request.user.is_authenticated %}
-              <li class="nav-item">
+{#              <li class="nav-item">#}
                 {# URL provided by django-allauth/account/urls.py #}
-                <a class="nav-link" href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a>
-              </li>
+{#                <a class="nav-link" href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a>#}
+{#              </li>#}
               <li class="nav-item">
                 {# URL provided by django-allauth/account/urls.py #}
                 <a class="nav-link" href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a>
