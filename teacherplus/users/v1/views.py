@@ -1,3 +1,4 @@
+import json
 import logging
 
 from django.contrib.auth import get_user_model, authenticate
@@ -60,7 +61,7 @@ class UserViewSet(ViewSet):
     @action(methods=["POST"], detail=False)
     def signup(self, request):
         try:
-            request_data = request.data
+            request_data = json.loads(json.dumps(request.data))
             request_serializer = self.get_request_serializer(
                 request_data.pop("user_type", "")
             )
